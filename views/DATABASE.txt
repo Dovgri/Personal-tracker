@@ -1,0 +1,9 @@
+//HOW I SAVED BOOKS in database;
+
+CREATE TABLE books (
+ book_id       SERIAL PRIMARY KEY,
+ author        VARCHAR(100) NOT NULL,
+ genre         VARCHAR(100),
+ book_read_date DATE,
+ rating SMALLINT CHECK (rating BETWEEN 1 AND 5),
+ review_text TEXT);
