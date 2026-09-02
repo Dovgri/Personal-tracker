@@ -1,24 +1,69 @@
 extends layout
 
 block scripts
-    script(src='/javascripts/books.js')
+    script(src='/javascripts/books.js', defer)
 
 block content
   .insert_book
     h2 Pridėti naują knygą
     form(action='/books', method='post')
-      input(type='text', placeholder='Knygos pavadinimas...', required, name='title')
+      lable(for='title') Pavadinimas
+      input(type='text', required, name='title')
       br
-      input(type='text', placeholder='Autorius...', required, name='author')
+      lable(for='author') Autorius
+      input(type='text', required, name='author')
       br
-      input(type='text', placeholder='Žanras...', required, name='genre')
+      lable(for='genre') Žanras
+      input(type='text', required, name='genre')
+      br
+      lable(for='date') Perskaitymo data
+      input(type='date', name='readDate')
+      br
+      lable(for='status') Skaitymo būsena
+      select(name='status')
+        option(value='reading') Dabar skaitau
+        option(value='finished') Perskaičiau
+        option(value='not_read') Skaitysiu ateityje
       br
       input(type='submit', value='Pridėti knygą')
     .search_book
         h2 Ieškoti knygos
-        form(action='/books', method='get')
+        form(action='/books/search', method='get')
             input(type='text', placeholder='Ieškoti knygos...', required, name='searchbar')
             br
             input(type='submit', value='Ieškoti')
     .book_list
-        h2 Knygų sąrašas`
+        h2 Knygų sąrašas
+        table
+            thead
+                tr
+                    th Knygos pavadinimas
+                    th Autorius
+                    th Žanras
+                    th Skaitymo data
+                    th Skaitymo statusas    
+            tbody
+                each book in books
+                    tr(class='bookRow', data-id=book.book_id)
+                        td= book.title
+                        td= book.author
+                        td= book.genre
+                        td= book.book_read_date
+                        td= book.status
+  .modal#myModal
+    .modal-content
+        span(class='close') &times;
+        input(type='text', required, id='modalTitle')
+        br
+        input(type='text', required, id='modalAuthor')
+        br
+        input(type='text', required, id='modalGenre')
+        br
+        input(type='date', id='modalReadDate')
+        br
+        select(id='modalStatus')
+            option(value='reading') Skaitoma
+            option(value='finished') Perskaityta
+            option(value='not_read') Neperskaityta
+        br
+        button(id='deleteButton') Trinti knygą
