@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title Log in — Dovydas Griškevičius
+    link(rel="stylesheet", href="/stylesheets/portfolioStyles.css")
+  body
+    .auth-page
+      .auth-card
+        a.auth-logo(href="/") dovydas#[span .dev]
+
+        h1 Log in
+
+        if error
+          p.form-error= error
+
+        form(method="post", action="/login")
+          .form-field
+            label(for="username") Username
+            input#username(name="username", type="text", required, autocomplete="username", autofocus)
+          .form-field
+            label(for="password") Password
+            input#password(name="password", type="password", required, autocomplete="current-password")
+          button.btn.btn-primary.btn-full(type="submit") Log in
+
+        a.auth-back(href="/") ← Back to site

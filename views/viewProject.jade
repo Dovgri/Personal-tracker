@@ -1,0 +1,57 @@
+extends layoutPortfolio
+
+block content
+
+  section.hero(style="padding-bottom: 40px;")
+    .wrap
+      a.back-link(href="/#projects") ← Visi projektai
+      h1(style="font-size: clamp(2.2rem, 4.5vw, 3.4rem); margin-top: 18px;")= project.name
+      if project.tags && project.tags.length
+        .project-tags(style="margin-top: 18px;")
+          each tag in project.tags
+            span= tag
+      p.hero-lede(style="margin-top: 20px;")= project.description
+
+      .hero-actions
+        if project.url
+          a.btn.btn-primary(href=project.url, target="_blank", rel="noopener") Atidaryti tiesiogiai
+        if project.github_url
+          a.btn.btn-outline(href=project.github_url, target="_blank", rel="noopener") Žiūrėti GitHub
+
+  section(style="padding-top: 0;")
+    .wrap
+
+      //- "Mini browser" preview of the live project, if there is one
+      if project.url
+        .browser-frame
+          .browser-bar
+            .browser-dots
+              span
+              span
+              span
+            .browser-address= project.url
+          iframe.browser-viewport(
+            src=project.url,
+            loading="lazy",
+            referrerpolicy="no-referrer",
+            title=`Peržiūra: ${project.name}`
+          )
+        p.preview-note.
+          Kai kurios svetainės neleidžia rodytis lange (iframe) — jei matai
+          tuščią plotą, spausk „Atidaryti tiesiogiai" viršuje.
+      else if project.cover_image
+        .browser-frame
+          .browser-bar
+            .browser-dots
+              span
+              span
+              span
+            .browser-address Ekrano nuotrauka
+          img.browser-screenshot(src=project.cover_image, alt=project.name)
+      else
+        p.preview-note Šiam projektui kol kas nėra gyvos versijos ar nuotraukos.
+
+      if project.content
+        .project-content
+          != project.content
+

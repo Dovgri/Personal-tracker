@@ -1,0 +1,63 @@
+extends layout.jade
+
+block content
+  .projects-page
+    .container
+      a.back(href="/projects") ‹ Mano projektai
+
+      .panel
+        h1= isNew ? 'Naujas projektas' : 'Redaguoti projektą'
+
+        if error
+          p.alert(role="alert")= error
+
+        form.form(method="post", action=action)
+          .field
+            label(for="name") Projekto pavadinimas
+            input#name(type="text", name="name", value=project.name, required, maxlength="80", autocomplete="off")
+
+          .field
+            label(for="description") Projekto apibūdinimas
+            textarea#description(name="description", rows="6", maxlength="500", aria-describedby="description-hint")= project.description
+            p#description-hint.hint Iki 500 simbolių.
+
+          .field
+            label(for="url")
+              | Projekto URL
+              span.optional nebūtina
+            input#url(type="url", name="url", value=project.url, placeholder="https://")
+
+          .field
+            label(for="github")
+              | GitHub nuoroda
+              span.optional nebūtina
+            input#github(type="url", name="github", value=project.github_url, placeholder="https://github.com/")
+
+          .actions
+            if !isNew
+              button.btn.btn-danger-text(type="button", data-open-dialog) Trinti
+            a.btn.btn-ghost(href="/projects") Atšaukti
+            button.btn.btn-primary(type="submit")= isNew ? 'Sukurti' : 'Naujinti'
+
+      if !isNew
+        dialog#delete-dialog.dialog(aria-labelledby="delete-title")
+          form(method="post", action="/projects/" + project.id + "/delete")
+            h2#delete-title Ištrinti projektą?
+            p Projektas „#{project.name}“ bus ištrintas negrįžtamai.
+            .actions
+              button.btn.btn-ghost(type="button", data-close-dialog) Atšaukti
+              button.btn.btn-danger(type="submit") Ištrinti
+
+//- Your layout puts `block scripts` in <head>, so wait for the DOM.
+block scripts
+  if !isNew
+    script.
+      document.addEventListener('DOMContentLoaded', function () {
+        var dialog = document.getElementById('delete-dialog');
+        document.querySelector('[data-open-dialog]').addEventListener('click', function () {
+          dialog.showModal();
+        });
+        dialog.querySelector('[data-close-dialog]').addEventListener('click', function () {
+          dialog.close();
+        });
+      });

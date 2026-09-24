@@ -1,0 +1,372 @@
+/* Wrapper: tokens + base look. Everything below is scoped to it. */
+.projects-page {
+  --bg: #eef1f5;
+  --surface: #ffffff;
+  --ink: #172033;
+  --ink-soft: #566074;
+  --line: #d6dce6;
+  --accent: #0e5a4b;
+  --accent-hover: #0a4539;
+  --danger: #b42318;
+  --danger-hover: #8f1c12;
+  --focus: #1b6ef3;
+
+  --radius-s: 8px;
+  --radius-m: 12px;
+
+  --font: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  min-height: 100vh;
+  padding-bottom: 48px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.projects-page *,
+.projects-page *::before,
+.projects-page *::after {
+  box-sizing: border-box;
+}
+
+.projects-page h1,
+.projects-page h2,
+.projects-page p {
+  margin: 0;
+}
+
+.projects-page a {
+  color: inherit;
+}
+
+.projects-page :focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.projects-page .container {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ---------- Buttons ---------- */
+.projects-page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-s);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.projects-page .btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.projects-page .btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.projects-page .btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.projects-page .btn-ghost:hover {
+  background: #f4f6f9;
+  border-color: #b9c1cf;
+}
+
+.projects-page .btn-danger {
+  background: var(--danger);
+  color: #fff;
+}
+.projects-page .btn-danger:hover {
+  background: var(--danger-hover);
+}
+
+.projects-page .btn-danger-text {
+  background: transparent;
+  color: var(--danger);
+  padding-inline: 4px;
+  margin-right: auto; /* pushes Cancel + Save to the right, away from Delete */
+}
+.projects-page .btn-danger-text:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Page head ---------- */
+.projects-page .page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-block: 40px 24px;
+}
+
+.projects-page .page-head h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* ---------- Project grid ---------- */
+.projects-page .grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.projects-page .grid > li {
+  display: flex;
+}
+
+.projects-page .card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.projects-page .card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.projects-page .monogram {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 16px;
+  border-radius: var(--radius-s);
+  background: hsl(var(--hue) 55% 90%);
+  color: hsl(var(--hue) 55% 25%);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.projects-page .card-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.projects-page .card-text {
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+  /* every card same height: show 3 lines, then … */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.projects-page .card-meta {
+  margin-top: auto;
+  padding-top: 16px;
+  color: var(--ink-soft);
+  font-size: 0.8125rem;
+}
+
+/* ---------- Empty state ---------- */
+.projects-page .empty {
+  max-width: 420px;
+  margin: 64px auto;
+  text-align: center;
+}
+
+.projects-page .empty h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.projects-page .empty p {
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+
+/* ---------- Form page ---------- */
+.projects-page .back {
+  display: inline-block;
+  margin-block: 32px 16px;
+  color: var(--ink-soft);
+  font-weight: 500;
+  text-decoration: none;
+}
+.projects-page .back:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.projects-page .panel {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+}
+
+.projects-page .panel h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.projects-page .alert {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 1px solid #f0b8b3;
+  border-radius: var(--radius-s);
+  background: #fdf0ee;
+  color: var(--danger);
+  font-weight: 500;
+}
+
+.projects-page .field {
+  margin-bottom: 20px;
+}
+
+.projects-page .field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.projects-page .optional {
+  margin-left: 8px;
+  color: var(--ink-soft);
+  font-weight: 400;
+  font-size: 0.8125rem;
+}
+
+.projects-page .field input,
+.projects-page .field textarea {
+  display: block;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #b9c1cf;
+  border-radius: var(--radius-s);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+
+.projects-page .field textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.projects-page .field input::placeholder {
+  color: #8a94a6;
+}
+
+.projects-page .field input:focus,
+.projects-page .field textarea:focus {
+  outline: none;
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px rgb(27 110 243 / 0.25);
+}
+
+.projects-page .hint {
+  margin-top: 6px;
+  color: var(--ink-soft);
+  font-size: 0.8125rem;
+}
+
+.projects-page .actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* ---------- Delete dialog ---------- */
+.projects-page .dialog {
+  width: min(440px, calc(100% - 32px));
+  padding: 28px;
+  border: 0;
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 20px 60px rgb(23 32 51 / 0.3);
+}
+
+.projects-page .dialog::backdrop {
+  background: rgb(23 32 51 / 0.5);
+}
+
+.projects-page .dialog h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.projects-page .dialog p {
+  color: var(--ink-soft);
+}
+
+.projects-page .dialog .actions {
+  margin-top: 24px;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 560px) {
+  .projects-page .container {
+    padding-inline: 16px;
+  }
+
+  .projects-page .page-head {
+    padding-block: 24px 16px;
+  }
+
+  .projects-page .page-head .btn {
+    width: 100%;
+  }
+
+  .projects-page .panel {
+    padding: 20px;
+    border-radius: var(--radius-s);
+  }
+
+  .projects-page .panel .actions .btn-primary,
+  .projects-page .panel .actions .btn-ghost {
+    flex: 1 1 140px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-page * {
+    transition: none !important;
+  }
+}

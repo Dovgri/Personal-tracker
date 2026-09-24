@@ -1,0 +1,46 @@
+extends layoutPortfolio
+
+block content
+
+  section.hero#hire(style="padding-bottom: 48px;")
+    .wrap
+      p.hero-kicker get in touch
+      h1(style="font-size: clamp(2.2rem, 4.5vw, 3.2rem);") Let's build something
+      p.hero-lede.
+        Open to freelance work, full-time roles, or just a conversation
+        about something you're building. Email is the fastest way to reach
+        me.
+
+  section(style="padding-top: 0;")
+    .wrap
+      .contact-grid
+
+        div
+          .contact-methods
+            .contact-method
+              span.label Email
+              a(href="dovydas.griskevicius23@gmail.com") dovydas.griskevicius23@gmail.com
+            .contact-method
+              span.label GitHub
+              a(href="https://github.com/Dovgri") github.com/dovgri
+            .contact-method
+              span.label LinkedIn
+              a(href="https://www.linkedin.com/in/dovydas-griškevičius-27654b292") linkedin.com/in/dovydasgriskevicius
+            .contact-method
+              span.label Based in
+              span Vilnius, Lithuania
+
+        div
+          //- Wire this up to a POST /contact route once you have
+          //- somewhere to send it (email service or a messages table).
+          form.contact-form(method="post", action="/contact")
+            .form-field
+              label(for="name") Name
+              input#name(name="name", type="text", required, autocomplete="name")
+            .form-field
+              label(for="email") Email
+              input#email(name="email", type="email", required, autocomplete="email")
+            .form-field
+              label(for="message") Message
+              textarea#message(name="message", required)
+            button.btn.btn-primary(type="submit") Send message

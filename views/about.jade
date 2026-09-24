@@ -1,0 +1,64 @@
+extends layoutPortfolio
+
+block content
+
+  section.hero(style="padding-bottom: 64px;")
+    .wrap
+      p.hero-kicker about
+      h1(style="font-size: clamp(2.2rem, 4.5vw, 3.2rem);") A few things worth knowing before you hire me
+
+  section(style="padding-top: 0;")
+    .wrap
+      .about-grid
+        .about-photo
+        .about-copy
+          p.
+            I started programming by trying to automate a spreadsheet at a
+            summer job, which turned into learning Python, then JavaScript,
+            then far too much time spent debugging SQL queries at midnight.
+            A few years on, that's still roughly what my days look like —
+            just with better tools.
+          p.
+            I care most about the backend: how data is modeled, how a
+            system behaves under real use, and how to keep an application
+            simple enough that I can still explain it to someone else in
+            five minutes. I'm currently deepening my Node.js and PostgreSQL
+            work, and slowly getting comfortable with building things
+            end-to-end rather than just the parts I already know well.
+          p.
+            I'm based in Vilnius, open to remote or hybrid work, and I like
+            small teams where I can see the whole shape of what I'm
+            building.
+
+  section
+    .wrap
+      .section-head
+        h2 What I work with
+
+      .skills-list
+        .skills-group
+          h4 backend
+          ul
+            li Node.js / Express
+            li PostgreSQL
+            li REST API design
+            li Python
+        .skills-group
+          h4 frontend
+          ul
+            li HTML / CSS
+            li JavaScript
+            li Pug templating
+            li React (learning)
+        .skills-group
+          h4 tools
+          ul
+            li Git / GitHub
+            li Docker (basics)
+            li Linux
+        .skills-group
+          h4 currently learning
+          ul
+            li Authentication & sessions
+            li Testing (Jest)
+            li Deployment / CI

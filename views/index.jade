@@ -1,13 +1,59 @@
-extends layout
+extends layoutPortfolio
 
 block content
-  nav 
-    ul
-      li: a(href='/') Pagrindinis puslapis
-      li: a(href='/userData') Vartotojas
-      li: a(href='/training') Sportas 
-      li: a(href='/books') Knygos
-      li: a(href='/fitness') Fizine bukle 
-      li: a(href='/food') Mityba
-      li: a(href='/activity') Veikla
-      li: a(href='/tasks') Uzduotys
+
+  section.hero
+    .wrap
+      p.hero-kicker ~/Dovydas
+      h1 Dovydas Griškevičius
+      p.hero-role Full-stack developer, building small useful things
+      p.hero-lede.
+        I design and build web applications end to end — from database schema
+        to the page you're looking at. Most of what's below started as a
+        problem I wanted solved for myself.
+      .hero-actions
+        a.btn.btn-outline(href="#projects") View projects
+        a.btn.btn-primary(href="/contact#hire") Hire me
+
+  section#projects
+    .wrap
+      .section-head
+        h2 Selected projects
+        a(href="/contact") Have a project in mind? Let's talk →
+
+      .projects-list
+        if projects && projects.length
+          each project in projects
+            a.project-row(href=`/projects/project/${project.id}`)
+              .project-thumb
+                img(src=project.cover_image || '/img/placeholder.jpg', alt="")
+              .project-info
+                h3= project.name
+                p= project.description
+                if project.tags && project.tags.length
+                  .project-tags
+                    each tag in project.tags
+                      span= tag
+              .project-links
+                if project.url
+                  a(href=project.url, target="_blank", rel="noopener") Live demo
+                if project.github_url
+                  a(href=project.github_url, target="_blank", rel="noopener") GitHub
+        else
+          p No projects yet
+
+  section
+    .wrap
+      .about-grid
+        .about-photo
+        .about-copy
+          p.eyebrow-free-heading(style="margin-bottom:20px;") A bit about how I work
+          p.
+            I'm mostly self-taught, which means I've broken most things at
+            least once before learning why they broke. I like backend and
+            database work in particular — figuring out the right shape for
+            data tends to make everything built on top of it easier.
+          p.
+            Outside of code I'm usually reading, hiking, or slowly
+            rebuilding this site for the third time.
+          a.btn.btn-outline(href="/about", style="margin-top:12px;") More about me

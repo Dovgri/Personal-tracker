@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title= title || 'Dovydas Griškevičius'
+    link(rel="stylesheet", href="/stylesheets/portfolioStyles.css")
+  body
+    header.site-header
+      .wrap.nav
+        a.logo(href="/") dovydas#[span .dev]
+
+        input#nav-toggle.nav-toggle-input(type="checkbox")
+        label.nav-toggle(for="nav-toggle", aria-label="Toggle menu")
+          span
+
+        nav.nav-links
+          a(href="/#projects", class=active === 'projects' ? 'active' : '') Projects
+          a(href="/about", class=active === 'about' ? 'active' : '') About
+          a(href="/contact", class=active === 'contact' ? 'active' : '') Contact
+          a.btn.btn-primary(href="/contact#hire") Hire me
+
+    main
+      block content
+
+    footer.site-footer
+      .wrap.footer-row
+        span © 2026 Dovydas Griškevičius
+        .footer-links
+          a(href="dovydas.griskevicius23@gmail.com") Email
+          a(href="https://github.com/Dovgri") GitHub
+          a(href="https://www.linkedin.com/in/dovydas-griškevičius-27654b292") LinkedIn

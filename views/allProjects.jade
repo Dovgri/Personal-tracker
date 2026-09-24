@@ -1,0 +1,24 @@
+extends layout.jade
+
+block content
+  .projects-page
+    .container
+      .page-head
+        h1 Mano projektai
+        a.btn.btn-primary(href="/projects/create") Naujas projektas
+      if projects && projects.length
+        ul.grid
+          each project in projects
+            - var hue = (project.id * 47) % 360
+            li
+              a.card(href="/projects/project/" + project.id)
+                span.monogram(style="--hue:" + hue, aria-hidden="true")= project.name.charAt(0)
+                h2.card-title= project.name
+                p.card-text= project.description
+                if project.updated
+                  p.card-meta Atnaujinta #{project.updated}
+      else
+        .empty
+          h2 Dar neturite projektų
+          p Sukurkite pirmąjį projektą, kad jis atsirastų čia.
+          a.btn.btn-primary(href="/projects/create") Naujas projektas
